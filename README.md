@@ -1,6 +1,8 @@
 # jar-packager
 
-![Main-Window](/images/main-window.png)
+![Light Mode](/images/main-window.png)
+
+![Dark Mode](/images/main-window-dark.png)
 
 A Simple JarPackager.
 
