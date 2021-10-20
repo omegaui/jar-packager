@@ -4,9 +4,10 @@
 -omega.jarpackager.JarPackager
 >Non-Java Project
 -false
->Opened Editors on Main Tab Panel
--project-root$/src/omega/jarpackager/JarPackager.java
+>Language Tag
+-0
 >Project Classpath : Required Jars
 -/home/ubuntu/Documents/Omega IDE/lib/flatlaf-0.46.jar
 >Project Classpath : Required Resource Roots
 -/home/ubuntu/Documents/Omega IDE/res
+-/home/ubuntu/Documents/Omega Projects/Prime Plugin System/bin

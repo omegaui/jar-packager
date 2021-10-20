@@ -1,46 +1,64 @@
 package omega.jarpackager;
-import omega.popup.OPopupItem;
+import omega.utils.IconManager;
 
 import omega.Screen;
 
+import omega.plugin.Plugin;
+import omega.plugin.PluginCategory;
+
 import java.util.LinkedList;
 
-import java.awt.image.BufferedImage;
+import java.net.URL;
 
-import omega.utils.ToolMenu;
-import omega.utils.IconManager;
-
-
-import omega.plugin.Plugin;
+import omega.popup.OPopupItem;
 public class JarPackagerPlugin implements Plugin{
 	
 	private JarPackager jarPackager;
 	private OPopupItem item;
+
+	public static LinkedList<URL> urls = new LinkedList<>();
+	static {
+		try{
+			urls.add(new URL("https://raw.githubusercontent.com/omegaui/jar-packager/main/images/screenshot0.png"));
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
-	public void enable() {
+	public boolean enable() {
 		Screen.getScreen().getToolMenu().toolsPopup.addItem(item);
+		return true;
 	}
 	
 	@Override
-	public void disable() {
+	public boolean disable() {
 		Screen.getScreen().getToolMenu().toolsPopup.removeItem("Jar Packager");
+		return true;
 	}
 	
 	@Override
-	public void init() {
-		jarPackager = new JarPackager(getIDE());
+	public boolean init() {
+		jarPackager = new JarPackager(Screen.getScreen());
 		item = new OPopupItem(Screen.getScreen().getToolMenu().toolsPopup, "Jar Packager", IconManager.fluentrocketbuildImage, ()->jarPackager.setVisible(true));
+		return true;
 	}
 	
 	@Override
-	public BufferedImage getImage() {
-		return IconManager.fluentrocketbuildImage;
-	}
-	
-	@Override
-	public LinkedList getImages() {
+	public URL getImage() {
+		try{
+			return new URL("https://raw.githubusercontent.com/omegaui/omegaide/main/res/fluent-icons/icons8-rocket-build-64.png");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		return null;
+	}
+	
+	@Override
+	public LinkedList<URL> getScreenshots() {
+		return urls;
 	}
 	
 	@Override
@@ -51,6 +69,11 @@ public class JarPackagerPlugin implements Plugin{
 	@Override
 	public String getVersion() {
 		return "v2.1";
+	}
+
+	@Override
+	public String getPluginCategory(){
+		return PluginCategory.UTILITY;
 	}
 	
 	@Override
@@ -64,13 +87,13 @@ public class JarPackagerPlugin implements Plugin{
 	}
 	
 	@Override
-	public String getCopyright() {
-		return "Copyright (C) 2021 Omega UI. All Right Reserved.";
+	public String getLicense() {
+		return "GNU GPL v3";
 	}
 	
 	@Override
-	public String getSize() {
-		return "7.6 KB";
+	public String getSizeInMegaBytes() {
+		return "0.76 MB";
 	}
 	
 	@Override

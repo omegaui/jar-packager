@@ -183,7 +183,11 @@ public class JarPackager extends JDialog{
 			buildEdgeComp.setText("Starting Build ...");
 	
 			try{
-				ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(dirComp.getToolTipText() + File.separator + jarNameField.getText()));
+				File targetZipFile = new File(dirComp.getToolTipText() + File.separator + jarNameField.getText());
+				
+				targetZipFile.delete();
+				
+				ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(targetZipFile));
 				LinkedList<String> byteCodes = new LinkedList<>();
 				JavaSyntaxParser.loadFiles(byteCodes, new File(Screen.getFileView().getProjectPath() + File.separator + "bin"), ".class");
 				if(!byteCodes.isEmpty()){
@@ -200,6 +204,7 @@ public class JarPackager extends JDialog{
 							Enumeration entries = libFile.entries();
 							while(entries.hasMoreElements()){
 								ZipEntry entry = (ZipEntry)entries.nextElement();
+								entry.setCompressedSize(-1);
 								add(libFile.getInputStream(entry), zos, entry);
 							}
 							libFile.close();
@@ -228,7 +233,9 @@ public class JarPackager extends JDialog{
 					if(Screen.isNotNull(Screen.getRunView().mainClass)){
 						manifestInformation += "\nMain-Class: " + Screen.getRunView().mainClass + "\n";
 					}
-					zos.putNextEntry(new ZipEntry("META-INF/MANIFEST.MF"));
+					ZipEntry entryX = new ZipEntry("META-INF/MANIFEST.MF");
+					entryX.setCompressedSize(-1);
+					zos.putNextEntry(entryX);
 					zos.write(manifestInformation.getBytes());
 					zos.flush();
 					zos.closeEntry();
@@ -248,7 +255,9 @@ public class JarPackager extends JDialog{
 		try{
 			String name = file.getAbsolutePath();
 			name = name.substring(parentPath.length() + 1);
-			zos.putNextEntry(new ZipEntry(name));
+			ZipEntry entry = new ZipEntry(name);
+			entry.setCompressedSize(-1);
+			zos.putNextEntry(entry);
 			InputStream ins = new FileInputStream(file);
 			while(ins.available() > 0){
 				zos.write(ins.read());
