@@ -1,14 +1,22 @@
 package omega.jarpackager;
-import java.awt.Window;
 import java.awt.Frame;
 
-import omega.instant.support.java.JavaSyntaxParser;
+import omega.instant.support.java.parser.JavaSyntaxParser;
+
+import omega.ui.dialog.FileSelectionDialog;
+
+import omega.io.IconManager;
+
+import omegaui.component.TextComp;
+import omegaui.component.NoCaretField;
+import omegaui.component.EdgeComp;
+import omegaui.component.SwitchComp;
+import omegaui.component.FlexPanel;
 
 import java.util.LinkedList;
 import java.util.Enumeration;
 
 import omega.Screen;
-
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,22 +27,13 @@ import java.util.zip.ZipOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import omega.utils.IconManager;
-import omega.utils.FileSelectionDialog;
-
 import java.awt.geom.RoundRectangle2D;
-
-import omega.comp.FlexPanel;
-import omega.comp.TextComp;
-import omega.comp.NoCaretField;
-import omega.comp.EdgeComp;
-import omega.comp.SwitchComp;
 
 import javax.swing.JFrame;
 import javax.swing.JDialog;
 
-import static omega.utils.UIManager.*;
-import static omega.comp.Animations.*;
+import static omega.io.UIManager.*;
+import static omegaui.component.animation.Animations.*;
 public class JarPackager extends JDialog{
 	
 	private TextComp titleComp;

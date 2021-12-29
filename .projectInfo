@@ -1,5 +1,5 @@
 >JDK Path
--/usr/lib/jvm/jdk-16
+-/usr/lib/jvm/jdk-17
 >Main Class
 -omega.jarpackager.JarPackager
 >Non-Java Project
@@ -10,4 +10,4 @@
 -/home/ubuntu/Documents/Omega IDE/lib/flatlaf-0.46.jar
 >Project Classpath : Required Resource Roots
 -/home/ubuntu/Documents/Omega IDE/res
--/home/ubuntu/Documents/Omega Projects/Prime Plugin System/bin
+-/home/ubuntu/Documents/Omega IDE/bin

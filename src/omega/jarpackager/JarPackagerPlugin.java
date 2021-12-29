@@ -1,5 +1,7 @@
 package omega.jarpackager;
-import omega.utils.IconManager;
+import omega.io.IconManager;
+
+import omega.ui.popup.OPopupItem;
 
 import omega.Screen;
 
@@ -9,8 +11,6 @@ import omega.plugin.PluginCategory;
 import java.util.LinkedList;
 
 import java.net.URL;
-
-import omega.popup.OPopupItem;
 public class JarPackagerPlugin implements Plugin{
 	
 	private JarPackager jarPackager;
@@ -68,7 +68,7 @@ public class JarPackagerPlugin implements Plugin{
 	
 	@Override
 	public String getVersion() {
-		return "v2.1";
+		return "v2.2";
 	}
 
 	@Override
