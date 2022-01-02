@@ -89,7 +89,7 @@ public class JarPackager extends JDialog{
 
 		FileSelectionDialog fs = new FileSelectionDialog(Screen.getScreen());
 		fs.setTitle("Select a Directory");
-		fs.setCurrentDirectory(new File(Screen.getFileView().getProjectPath() + File.separator + "out"));
+		fs.setCurrentDirectory(new File(Screen.getProjectFile().getProjectPath() + File.separator + "out"));
 
 		dirComp = new TextComp(IconManager.fluentplainfolderImage, 25, 25, TOOLMENU_COLOR1_SHADE, ALPHA, ALPHA, ()->{
 			LinkedList<File> files = fs.selectDirectories();
@@ -99,7 +99,7 @@ public class JarPackager extends JDialog{
 		});
 		dirComp.setBounds(10, 40, 25, 25);
 		dirComp.setArc(2, 2);
-		dirComp.setToolTipText(Screen.getFileView().getProjectPath() + File.separator + "out");
+		dirComp.setToolTipText(Screen.getProjectFile().getProjectPath() + File.separator + "out");
 		add(dirComp);
 
 		jarNameField = new NoCaretField("", "Jar Name", TOOLMENU_COLOR3, c2, TOOLMENU_COLOR2);
@@ -188,17 +188,17 @@ public class JarPackager extends JDialog{
 				
 				ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(targetZipFile));
 				LinkedList<String> byteCodes = new LinkedList<>();
-				JavaSyntaxParser.loadFiles(byteCodes, new File(Screen.getFileView().getProjectPath() + File.separator + "bin"), ".class");
+				JavaSyntaxParser.loadFiles(byteCodes, new File(Screen.getProjectFile().getProjectPath() + File.separator + "bin"), ".class");
 				if(!byteCodes.isEmpty()){
 					for(String path : byteCodes){
 						setProgress("Adding Byte Codes", ((byteCodes.indexOf(path) + 1) * 100) / byteCodes.size());
-						add(new File(path), zos, Screen.getFileView().getProjectPath() + File.separator + "bin");
+						add(new File(path), zos, Screen.getProjectFile().getProjectPath() + File.separator + "bin");
 					}
 				}
 				if(libSwitch.isOn()){
-					if(!Screen.getFileView().getProjectManager().jars.isEmpty()){
-						for(String path : Screen.getFileView().getProjectManager().jars){
-							setProgress("Adding Libraries", ((Screen.getFileView().getProjectManager().jars.indexOf(path) + 1) * 100) / Screen.getFileView().getProjectManager().jars.size());
+					if(!Screen.getProjectFile().getProjectManager().jars.isEmpty()){
+						for(String path : Screen.getProjectFile().getProjectManager().jars){
+							setProgress("Adding Libraries", ((Screen.getProjectFile().getProjectManager().jars.indexOf(path) + 1) * 100) / Screen.getProjectFile().getProjectManager().jars.size());
 							ZipFile libFile = new ZipFile(new File(path));
 							Enumeration entries = libFile.entries();
 							while(entries.hasMoreElements()){
@@ -212,13 +212,13 @@ public class JarPackager extends JDialog{
 				}
 				
 				if(resSwitch.isOn()){
-					if(!Screen.getFileView().getProjectManager().resourceRoots.isEmpty()){
-						for(String resPath : Screen.getFileView().getProjectManager().resourceRoots){
+					if(!Screen.getProjectFile().getProjectManager().resourceRoots.isEmpty()){
+						for(String resPath : Screen.getProjectFile().getProjectManager().resourceRoots){
 							LinkedList<String> resources = new LinkedList<>();
 							JavaSyntaxParser.loadFiles(resources, new File(resPath), "");
 							if(!resources.isEmpty()){
 								for(String path : resources){
-									setProgress("Adding Resource Roots (" + (Screen.getFileView().getProjectManager().resourceRoots.indexOf(resPath) + 1) + " of " + Screen.getFileView().getProjectManager().resourceRoots.size() + ")", ((resources.indexOf(path) + 1) * 100) / resources.size());
+									setProgress("Adding Resource Roots (" + (Screen.getProjectFile().getProjectManager().resourceRoots.indexOf(resPath) + 1) + " of " + Screen.getProjectFile().getProjectManager().resourceRoots.size() + ")", ((resources.indexOf(path) + 1) * 100) / resources.size());
 									add(new File(path), zos, resPath);
 								}
 							}
@@ -229,8 +229,8 @@ public class JarPackager extends JDialog{
 				if(manifestSwitch.isOn()){
 					buildEdgeComp.setText("Generating Manifest ...");
 					String manifestInformation = "Manifest-Version: 1.0";
-					if(Screen.isNotNull(Screen.getRunView().mainClass)){
-						manifestInformation += "\nMain-Class: " + Screen.getRunView().mainClass + "\n";
+					if(Screen.isNotNull(Screen.getProjectRunner().mainClass)){
+						manifestInformation += "\nMain-Class: " + Screen.getProjectRunner().mainClass + "\n";
 					}
 					ZipEntry entryX = new ZipEntry("META-INF/MANIFEST.MF");
 					entryX.setCompressedSize(-1);
