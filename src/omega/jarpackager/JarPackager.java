@@ -1,3 +1,21 @@
+/*
+ * JarPackager
+ * Copyright (C) 2022 Omega UI
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package omega.jarpackager;
 import java.awt.Frame;
 
@@ -80,7 +98,7 @@ public class JarPackager extends JDialog{
 		titleComp.attachDragger(this);
 		add(titleComp);
 
-		iconComp = new TextComp(IconManager.fluentrocketbuildImage, 25, 25, ALPHA, ALPHA, ALPHA, null);
+		iconComp = new TextComp(IconManager.fluentwindRoseImage, 25, 25, ALPHA, ALPHA, ALPHA, null);
 		iconComp.setBounds(0, 0, 30, 30);
 		iconComp.setClickable(false);
 		iconComp.setArc(0, 0);
@@ -91,7 +109,7 @@ public class JarPackager extends JDialog{
 		fs.setTitle("Select a Directory");
 		fs.setCurrentDirectory(new File(Screen.getProjectFile().getProjectPath() + File.separator + "out"));
 
-		dirComp = new TextComp(IconManager.fluentplainfolderImage, 25, 25, TOOLMENU_COLOR1_SHADE, ALPHA, ALPHA, ()->{
+		dirComp = new TextComp(IconManager.fluentpackageImage, 25, 25, TOOLMENU_COLOR1_SHADE, ALPHA, ALPHA, ()->{
 			LinkedList<File> files = fs.selectDirectories();
 			if(!files.isEmpty()){
 				dirComp.setToolTipText(files.getFirst().getAbsolutePath());
@@ -157,12 +175,12 @@ public class JarPackager extends JDialog{
 		buildEdgeComp.setLookLikeLabel(true);
 		add(buildEdgeComp);
 
-		buildComp = new TextComp("Build", TOOLMENU_COLOR2_SHADE, c2, TOOLMENU_COLOR2, this::build);
+		buildComp = new TextComp("Build", TOOLMENU_COLOR1_SHADE, TOOLMENU_COLOR5_SHADE, TOOLMENU_COLOR5, this::build);
 		buildComp.setBounds(40, getHeight() - 70 - 12, 100, 25);
 		buildComp.setFont(PX14);
 		add(buildComp);
 
-		closeComp = new TextComp("Close", TOOLMENU_COLOR2_SHADE, c2, TOOLMENU_COLOR2, ()->setVisible(false));
+		closeComp = new TextComp("Close", TOOLMENU_COLOR1_SHADE, TOOLMENU_COLOR2_SHADE, TOOLMENU_COLOR2, ()->setVisible(false));
 		closeComp.setBounds(getWidth() - 40 - 100, getHeight() - 70 - 12, 100, 25);
 		closeComp.setFont(PX14);
 		add(closeComp);

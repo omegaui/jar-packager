@@ -2,8 +2,6 @@
 -/usr/lib/jvm/jdk-17
 >Main Class
 -omega.jarpackager.JarPackager
->Non-Java Project
--false
 >Language Tag
 -0
 >Project Classpath : Required Jars
