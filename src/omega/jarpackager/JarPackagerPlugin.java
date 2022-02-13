@@ -66,7 +66,7 @@ public class JarPackagerPlugin implements Plugin{
 	@Override
 	public URL getImage() {
 		try{
-			return new URL("https://raw.githubusercontent.com/omegaui/omegaide/main/res/fluent-icons/icons8-wind-rose-64.png");
+			return new URL("https://raw.githubusercontent.com/omegaui/omegaide/main/res/fluent-icons/icons8-wind-rose-96.png");
 		}
 		catch(Exception e){
 			e.printStackTrace();
