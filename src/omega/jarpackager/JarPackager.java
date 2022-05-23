@@ -175,12 +175,12 @@ public class JarPackager extends JDialog{
 		buildEdgeComp.setLookLikeLabel(true);
 		add(buildEdgeComp);
 
-		buildComp = new TextComp("Build", TOOLMENU_COLOR1_SHADE, TOOLMENU_COLOR5_SHADE, TOOLMENU_COLOR5, this::build);
+		buildComp = new TextComp("Build", TOOLMENU_COLOR5_SHADE, TOOLMENU_COLOR5_SHADE, TOOLMENU_COLOR5, this::build);
 		buildComp.setBounds(40, getHeight() - 70 - 12, 100, 25);
 		buildComp.setFont(PX14);
 		add(buildComp);
 
-		closeComp = new TextComp("Close", TOOLMENU_COLOR1_SHADE, TOOLMENU_COLOR2_SHADE, TOOLMENU_COLOR2, ()->setVisible(false));
+		closeComp = new TextComp("Close", TOOLMENU_COLOR2_SHADE, TOOLMENU_COLOR2_SHADE, TOOLMENU_COLOR2, ()->setVisible(false));
 		closeComp.setBounds(getWidth() - 40 - 100, getHeight() - 70 - 12, 100, 25);
 		closeComp.setFont(PX14);
 		add(closeComp);

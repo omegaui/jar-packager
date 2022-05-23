@@ -19,16 +19,16 @@
 package omega.jarpackager;
 import omega.io.IconManager;
 
-import omega.ui.popup.OPopupItem;
-
 import omega.Screen;
 
-import omega.plugin.Plugin;
 import omega.plugin.PluginCategory;
+import omega.plugin.Plugin;
+
+import java.net.URL;
 
 import java.util.LinkedList;
 
-import java.net.URL;
+import omega.ui.popup.OPopupItem;
 public class JarPackagerPlugin implements Plugin{
 	
 	private JarPackager jarPackager;
